@@ -16,20 +16,18 @@ const Home = () => {
     const [file, setFile] = useState(null);
     const [posting, setPosting] = useState(false);
     const [loading, setLoding] = useState(false);
-
     const {register,
            handleSubmit,
             formState: {errors},
           } = useForm();
     const handlePostSubmit = async(data) => {}
-
   return (
     <>
   <div className='hame w-full px-0 lg:px-10 pb-20 2x1:px-40 bg-bgColor
   lg:rounded-lg h-screen overflow-hidden'>
     <TopBar />
-
     <div className='w-full flex gap-2 lg:gap-4 pt-5 pb-10 h-full'>
+
       {/* LEFT */}
       <div className='hidden w-1/3 lg:w-1/4 h-full md:flex-col gap-6
       overflow-y-auto'>
@@ -70,7 +68,6 @@ const Home = () => {
                 } mt-0.5`}>
                 {errMsg?.message}</span>
               )}
-
               <div className='flex items-center justify-between py-4'>
                 <label
                  htmlFor='imgUpload'
@@ -88,7 +85,6 @@ const Home = () => {
                     <BiImages />
                     <span>Image</span>
                 </label>
-
                
                 <label
                  className='flex items-center gap-1 text-base text-ascent-2 
@@ -106,7 +102,6 @@ const Home = () => {
                   <BiSolidVideo />
                   <span>Video</span>
                   </label>
-
                   <label
                  className='flex items-center gap-1 text-base text-ascent-2 
                  hover:text-ascent-1 cursor-pointer'
@@ -123,7 +118,6 @@ const Home = () => {
                   <BsFiletypeGif />
                   <span>Gif</span>
                   </label>
-
                   <div>
                     {posting ? (
                        <Loading />
@@ -138,7 +132,6 @@ const Home = () => {
                 </div> 
               </div>
        </form>
-
             {loading ? (<Loading />) : posts?.length > 0 ? (
              posts?.map((post) => (
               <PostCard key={post?._id} post={post}
@@ -158,7 +151,7 @@ const Home = () => {
       {/* RIGHT */}
       <div className="hidden w-1/4 h-full lg:flex flex-col gap-8
       overflow-y-auto">
-
+        
       {/* FRIENDS REQUEST */}
       <div className='w-full bg-primary shadow-sm rounded-lg px-6 py-5'>
         <div className='flex items-center justify-between text-xl
@@ -166,50 +159,44 @@ const Home = () => {
           <span>Friend Request</span>
           <span>{friendRequest?.length}</span>
        </div>
-
        <div className="w-full flex flex-col gap-4 pt-4">
         {friendRequest?.map(({_id, requestFrom: from }) => (
           <div key={_id} className='flex items-center justify-between'>
           <Link 
           to={"/profile/" + from._id}
-          className='w-full flex gap-4 items-center cursor-pointer' 
+          className='w-full flex gap-3 items-center cursor-pointer' 
           >
            
             <img 
             src={from?.profileUrl ?? NoProfile} 
             alt={from?.firstName}
-            className='W-110 H-10 object-cover rounded-full'
+            className='w-10 h-10 object-cover rounded-full'
             />
-            <div className='flex-1'>
-              <p className='text-base font-medium text-ascent-1'>
+            <div className='flex flex-col'>
+              <p className='text-[1rem] font-medium'>
                 {from?.firstName} {from?.lastName}
               </p>
-              <span className='text-sm text-ascent-2'>
+              <span className='text-[0.75rem]'>
                 {from?.profession ?? "No Profession"}
               </span>
             </div>
             </Link>
-
-            <div className='flex gap-1'>
+            <div className='flex gap-6'>
               <CustomButton 
                title='Allow'
-               containerStyles='border border-[#666] text-xs
-               text-ascent-1 px-1,5 py-1 rounded-full'
+               ContainerStyles='bg-blue text-ascent-1 p-1.5 rounded-md text-white'
                />
-            <div className='flex gap-1'>
+            <div className='flex'>
               <CustomButton 
                title='Deny'
-               containerStyles='border border-[#666] text-xs
-               text-ascent-1 px-1,5 py-1 rounded-full'
+               ContainerStyles='text-ascent-1 p-1.5 rounded-md bg-white '
                />
             </div>
           </div>
           </div>
         ))}
-
        </div>
     </div>
-
       
       {/* SUGGESTED FRIENDS */}
       <div className='w-full bg-primary shadow-sm rounded-lg px-5 py-5'>
@@ -232,7 +219,6 @@ const Home = () => {
                  alt={friend?.firstName}
                  className="w-10 h-10 object-cover rounded-full"
                />
-
                <div className='flex-1'>
                 <p className='text-base font-medium text-ascent-1'>
                   {friend?.firstName} {friend?.lastName}
@@ -242,7 +228,6 @@ const Home = () => {
                 </span>
                </div>
               </Link>
-
               <div className='flex gap-1'>
                 <button
                  className='bg-[#0444a430] text-sm text-white p-1 rounded'
@@ -258,10 +243,8 @@ const Home = () => {
     </div>
     </div>
   </div>
-
   {edit && <EditProfile/>}
   </>
   ) ;
 };
-
 export default Home;
